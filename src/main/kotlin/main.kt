@@ -13,4 +13,19 @@ fun main() {
         // creating Observables in RxKotlin
         val mostWatched = listOf(movieSeries1, movieSeries2, movieSeries3).toObservable()
     }
+
+    exampleOf("Creating a subscriber") {
+
+        // creating a subscriber
+        // An Observable is nothing without a Subscriber
+        // Example: A interesting blog(Observable) is nothing without its readers(subscribers),a light switch is nothing without the bulb.
+        // A subscriber returns a disposable which is an interface that has dispose() function
+        // A subscriber can return Next element, Error or Complete
+        
+        val mostPopular = Observable.just(movieSeries1, movieSeries2)
+
+        mostPopular.subscribe { element ->
+            println(element)
+        }
+    }
 }
