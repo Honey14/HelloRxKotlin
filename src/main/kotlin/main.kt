@@ -1,4 +1,5 @@
 import io.reactivex.Observable
+import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.rxkotlin.toObservable
 
 fun main() {
@@ -21,11 +22,21 @@ fun main() {
         // Example: A interesting blog(Observable) is nothing without its readers(subscribers),a light switch is nothing without the bulb.
         // A subscriber returns a disposable which is an interface that has dispose() function
         // A subscriber can return Next element, Error or Complete
-        
+
         val mostPopular = Observable.just(movieSeries1, movieSeries2)
 
         mostPopular.subscribe { element ->
             println(element)
         }
+    }
+
+    // modifying to use subscribe by method which takes next, error, complete elements
+    exampleOf("Create subscriber") {
+        val observable = Observable.just(movieSeries3, movieSeries2)
+
+        observable.subscribeBy(
+            onNext = { println(it) },
+            onComplete = { print("Complete") }
+        )
     }
 }
