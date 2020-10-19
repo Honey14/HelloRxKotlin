@@ -39,4 +39,14 @@ fun main() {
             onComplete = { print("Complete") }
         )
     }
+
+    // type cannot be inferred, so Unit is good as anything
+    exampleOf("empty") {
+        val observable = Observable.empty<Unit>()
+
+        observable.subscribeBy(
+            onNext = { println(it) },
+            onComplete = { print("Completed") }
+        )
+    }
 }
